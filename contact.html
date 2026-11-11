@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Contact | Oceanrise Unicus</title>
+    <meta name="description" content="Contact Oceanrise Unicus - email, phone and WhatsApp.">
+    <link rel="icon" href="assets/images/Logo.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body data-hello="This is the Contact page. Fill the form and it opens WhatsApp!">
+
+    <section class="page-hero" data-say="Contact us! Fill in the form and your message goes to our WhatsApp.">
+        <div class="wrap">
+            <p class="tag">Ready to transform your institute?</p>
+            <h1>Contact Us</h1>
+            <p class="lead" style="margin:12px auto 0">Partner with us to bring innovation and excellence to your
+                institute with AI &amp; Robotics Labs.</p>
+        </div>
+    </section>
+    <section class="sec">
+        <div class="wrap split">
+            <div class="reveal l" data-say="You can also email or call us directly. Details are here.">
+                <h2>Get in touch</h2><br>
+                <div class="ci">
+                    <div class="ic">📧</div>
+                    <div><b>Email</b><br><a href="mailto:oceanrise.unicus@gmail.com">oceanrise.unicus@gmail.com</a>
+                    </div>
+                </div>
+                <div class="ci">
+                    <div class="ic">📞</div>
+                    <div><b>Phone</b><br><a href="tel:+918349243485">+91-8349243485</a></div>
+                </div>
+                <div class="ci">
+                    <div class="ic">💬</div>
+                    <div><b>WhatsApp</b><br><a href="https://wa.me/918349243485" target="_blank" rel="noopener">Chat
+                            with us</a></div>
+                </div><br>
+                <div class="imgbox " data-label="📷 Contact image"><img src="assets/images/ORUS Team.png" alt="Contact image"></div>
+            </div>
+            <div class="card reveal r">
+                <h3>Send us a message</h3><br>
+                <form id="cf"><input name="name" placeholder="Full name" required autocomplete="name"><input
+                        name="email" type="email" placeholder="Email address" required autocomplete="email">
+                    <input name="phone" type="tel" placeholder="Phone number" required pattern="[0-9+\-\s]{7,15}"
+                        autocomplete="tel"><textarea name="message" placeholder="Your message"
+                        required></textarea><button class="btn" type="submit">Send on WhatsApp</button>
+                    <p id="ok" role="status"></p>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script src="js/components.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
