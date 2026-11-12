@@ -8,7 +8,7 @@ const SITE = {
   name: 'ORUS', full: 'OCEANRISE UNICUS', logo: 'assets/images/Logo.jpeg',
   mail: 'oceanrise.unicus@gmail.com', phone: '+91-8349243485', wa: '918349243485',
   about: "Education re-imagined; excellence redefined. We build AI & Robotics labs and skilling programs for institutes.",
-  pages: [['index.html', 'Home'], ['about.html', 'About'], ['services.html', 'Services'], ['contact.html', 'Contact']],
+  pages: [['index.html', 'Home'], ['about.html', 'About'], ['services.html', 'Services'], ['contact.html', 'Contact'], ['orus-portal/index.html', 'ORUS Portal']],
   /* name, link (replace '#' with your real profile URL), icon */
   social: [
     ['Instagram', 'https://www.instagram.com/oceanriseunicus/', '<rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>'],

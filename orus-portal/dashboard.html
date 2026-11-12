@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{app} – Dashboard</title>
+  <link rel="icon" href="../assets/images/Logo.jpeg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="js/config.js"></script>
+  <script src="js/theme.js"></script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Top bar: brand + site navigation + tools (nav links are filled by js/layout.js) -->
+  <header class="topbar">
+    <div class="nav">
+      <a class="brand" href="dashboard.html">
+        <img data-logo alt="Logo" />
+        <span><span data-app-name>ORUS Portal</span><small data-tagline>Orders &amp; Training Management</small></span>
+      </a>
+      <nav class="links" id="links" aria-label="Main navigation"></nav>
+      <div class="tools">
+        <span class="role-badge" id="roleBadge"></span>
+        <button class="ib" data-theme-toggle aria-label="Dark / light mode"></button>
+        <div class="profile">
+          <button class="ib avatar" id="profileBtn" aria-label="Profile">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+          </button>
+          <div class="menu hidden" id="profileMenu">
+            <div class="menu-info"><b id="uName"></b><span id="uEmail"></span></div>
+            <button class="menu-item" id="logoutBtn">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+              Logout
+            </button>
+          </div>
+        </div>
+        <button class="ib burger" id="bg" aria-label="Menu" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap main">
+    <!-- Heading -->
+    <section class="page-head">
+      <div>
+        <h1 id="pageTitle">Dashboard</h1>
+        <p class="muted" id="pageSub"></p>
+      </div>
+      <div class="actions">
+        <button class="btn o" id="pdfBtn">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+          <span>Download PDF</span>
+        </button>
+        <button class="btn" id="addBtn">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          <span id="addLabel">Add Entry</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Admin tabs -->
+    <nav class="tabs hidden" id="tabs" data-admin>
+      <button data-tab="records" class="active">Records</button>
+      <button data-tab="trainers">Trainers</button>
+    </nav>
+
+    <!-- RECORDS VIEW -->
+    <div id="recordsView">
+      <section class="stats" id="stats"></section>
+
+      <section class="panel filters">
+        <div class="seg" id="modes">
+          <button data-mode="all" class="active">All</button>
+          <button data-mode="day">Day</button>
+          <button data-mode="month">Month</button>
+          <button data-mode="year">Year</button>
+          <button data-mode="recent">Recent</button>
+          <button data-mode="range">Range</button>
+        </div>
+
+        <div class="filter-inputs">
+          <div class="f-group hidden" data-for="day"><label class="lbl">Date</label><input class="input" type="date" id="fDay" /></div>
+          <div class="f-group hidden" data-for="month"><label class="lbl">Month</label><input class="input" type="month" id="fMonth" /></div>
+          <div class="f-group hidden" data-for="year"><label class="lbl">Year</label><input class="input" type="number" id="fYear" min="2000" max="2100" /></div>
+          <div class="f-group hidden" data-for="recent"><label class="lbl">Last how many days?</label><input class="input" type="number" id="fRecent" min="1" value="7" /></div>
+          <div class="f-group hidden" data-for="range"><label class="lbl">From</label><input class="input" type="date" id="fFrom" /></div>
+          <div class="f-group hidden" data-for="range"><label class="lbl">To</label><input class="input" type="date" id="fTo" /></div>
+          <div class="f-group" data-admin><label class="lbl">Status</label><select class="input" id="fStatus"><option value="">All</option></select></div>
+          <div class="f-group" data-admin><label class="lbl">Trainer</label><select class="input" id="fTrainer"><option value="">All</option></select></div>
+          <div class="f-group"><label class="lbl">Sort</label>
+            <select class="input" id="fSort"><option value="desc">Newest first</option><option value="asc">Oldest first</option></select></div>
+          <div class="f-group grow"><label class="lbl">Search</label><input class="input" type="search" id="fSearch" placeholder="Search anything…" /></div>
+        </div>
+      </section>
+
+      <div class="results-head">
+        <div>
+          <h2 id="resultsTitle">All records</h2>
+          <span class="muted" id="resultsCount"></span>
+        </div>
+        <div class="seg view-toggle" id="views">
+          <button data-view="cards" title="Card view">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            Cards
+          </button>
+          <button data-view="ledger" title="Ledger table">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>
+            Ledger
+          </button>
+        </div>
+      </div>
+      <section id="list" class="list"></section>
+    </div>
+
+    <!-- TRAINERS VIEW (admin) -->
+    <div id="trainersView" class="hidden">
+      <div class="results-head">
+        <div><h2>Trainers</h2><span class="muted" id="tCount"></span></div>
+      </div>
+      <section id="tlist"></section>
+    </div>
+  </main>
+
+  <!-- Add / Edit entry modal -->
+  <div class="overlay hidden" id="modal">
+    <div class="modal card">
+      <div class="modal-head">
+        <h3 id="modalTitle">Add Entry</h3>
+        <button class="ib" id="closeModal" aria-label="Close">✕</button>
+      </div>
+      <form id="entryForm" class="modal-body">
+        <div id="formBody"></div>
+        <p class="form-error" id="formErr"></p>
+        <div class="modal-foot">
+          <button type="button" class="btn o" id="cancelModal">Cancel</button>
+          <button type="submit" class="btn" id="saveBtn">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Trainer modal (admin) -->
+  <div class="overlay hidden" id="tmodal">
+    <div class="modal card narrow">
+      <div class="modal-head">
+        <h3 id="tTitle">Add Trainer</h3>
+        <button class="ib" id="closeT" aria-label="Close">✕</button>
+      </div>
+      <form id="trainerForm" class="modal-body" autocomplete="off">
+        <label class="lbl">Trainer name</label>
+        <input class="input" id="tName" required placeholder="Full name" />
+        <label class="lbl">Email (login)</label>
+        <input class="input" id="tEmail" type="email" required placeholder="trainer@example.com" />
+        <label class="lbl">Password</label>
+        <div class="pass-wrap">
+          <input class="input" id="tPass" type="text" autocomplete="new-password" placeholder="Min 6 characters" />
+        </div>
+        <p class="muted small" id="tPassHint"></p>
+        <p class="form-error" id="tErr"></p>
+        <div class="modal-foot">
+          <button type="button" class="btn o" id="cancelT">Cancel</button>
+          <button type="submit" class="btn" id="saveT">Save Trainer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
